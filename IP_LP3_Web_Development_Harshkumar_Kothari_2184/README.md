@@ -1,3 +1,11 @@
+# Installation instruction
+
+Clone or download the zip folder of the project and open Command prompt in folder directory and run npm install , it will download all the dependency.Run ng serve and the project will run on localhost
+
+# Live Hosting:
+
+Firbase Hosting:https://covid-hk19.web.app/
+
 # Covid
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
