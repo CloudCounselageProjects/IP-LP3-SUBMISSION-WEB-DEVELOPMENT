@@ -1,6 +1,10 @@
 # CloudCounselageAssignment
  
 Lp3 Assignment:
-Go to Task Logger
-Install node modules in backend as well as the frontend folder
-After installing node_modules
+I have created a task book keeper as well as an option to fetch current date and time using MERN 
+
+To start:
+Go to tasklogger and follow the steps in Readme.md of tasklogger folder.
+
+
+
