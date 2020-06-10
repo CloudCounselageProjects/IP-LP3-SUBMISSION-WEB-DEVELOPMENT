@@ -3,7 +3,7 @@ Create a personal website using full-stack development which uses a REST API to 
 
 # How to run it:
 1) Make sure Node.js is installed on your system.
-2) Navigate to LP3-Assignment-master folder in command prompt and install node modules using "npm install" command.
+2) Navigate to IP_LP3_Web_Development_Aditya_Tadas_2180 folder in command prompt and install node modules using "npm install" command.
 3) Use "npm start" command to automatically start the express server and open the website on your default browser.
 
 # Screenshot:
