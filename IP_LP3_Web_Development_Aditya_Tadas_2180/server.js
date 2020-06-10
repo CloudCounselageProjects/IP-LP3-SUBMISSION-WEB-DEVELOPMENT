@@ -1,0 +1,10 @@
+const express = require('express');
+const open = require('open');
+const http = require('http');
+const app = express();
+const port = 8888;
+app.use(express.static(__dirname + '/dist/lp3-assignment'));
+app.get('/api/datetime', (req, res) => res.send(Date()));
+const server = http.createServer(app);
+server.listen(port, () => console.log("Server started on port " + port + "\nOpening http://localhost:8888/ on default browser."));
+open('http://localhost:8888/');
