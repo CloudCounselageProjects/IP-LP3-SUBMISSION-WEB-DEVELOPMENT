@@ -1,0 +1,9 @@
+.container{
+    position: relative;
+    text-align: center;
+}
+
+.txtDiv{
+    color: white;
+    font-size: 200%;
+}

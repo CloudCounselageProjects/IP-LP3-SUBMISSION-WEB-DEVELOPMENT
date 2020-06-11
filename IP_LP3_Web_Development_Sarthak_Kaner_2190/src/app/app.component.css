@@ -1,0 +1,19 @@
+.color{
+    color: blue;
+}
+.heading{
+    font-size: 250%;
+    text-align: center;
+    margin: 2%;
+}
+
+.text{
+  
+    margin: 2%;
+    font-size: 150%;
+}
+.details{
+    
+    margin: 2%;
+    font-size: 125%;
+}
