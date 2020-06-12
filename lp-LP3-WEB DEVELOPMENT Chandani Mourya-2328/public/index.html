@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	 <div id="date-container"></div>
+  	 <div id="time-container"></div>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+ 	var date=new Date();
+ 	var fulldate=date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+ 	var time=date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+ 	ReactDOM.render(
+ 	<h1>DATES:-{fulldate}</h1>,
+ 	document.getElementById('date-container'))
+ 	ReactDOM.render(
+ 	<h1>TIME:-{time}</h1>,
+ 	document.getElementById('time-container'))
+
+ </script>
+ <style type="text/css">
+ 	#date-container{
+ 		background-color: rgba(218,112,214,0.3);
+ 		border-radius: 15px;
+ 		border: 3px solid black;
+ 		width: 25%;
+ 		margin:0 auto;
+ 		margin-top: 30px;
+ 	}	
+ 	#time-container{
+ 		border-radius: 15px;
+ 		border: 3px solid black;
+ 		width: 25%;
+ 		margin:0 auto;
+ 		margin-top: 30px;
+ 		background-color: rgba(218,112,214,0.3);
+ 	}
+ </style>
+</body>
+</html>
