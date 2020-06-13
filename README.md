@@ -16,8 +16,11 @@ SETUP:
 1. Download and install NodeJS from https://nodejs.org/
 2. After successful installation, you'll need to restart your computer.
 3. To see if Node and npm is installed, open Command Prompt or Powershell or any such terminal and type: 
+
 		a. node -v
+		
 		b. npm -v
+		
 This should print node and npm's version. Thus, the installation was successful.
 If instead an error is printed stating it was "not recognized as an internal or external command", add node.exe and npm directories to your environment variable 'PATH'
 4. Once done, place all the above files and folders altogether in a specific folder*.
