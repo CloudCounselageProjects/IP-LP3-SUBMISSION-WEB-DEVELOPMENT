@@ -1,0 +1,52 @@
+.button {
+    background-color: lightsalmon;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+    align-self: center;
+  }
+  .button1 {
+    background-color: hsl(146, 62%, 93%); 
+    color: black; 
+    border: 2px solid purple;
+  }
+  
+  .button1:hover {
+    background-color: violet;
+    color: white;
+  }
+  .divi {
+    text-align: center;
+  }
+  .div2{
+
+    background-color: lightsteelblue;
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 100%;
+  }
+  .div3{
+    font-size: large;
+    font-weight: 500;
+    font-style: italic;
+    text-decoration: wavy;
+   text-shadow: inherit;
+   text-decoration-color: lightcoral;
+   text-decoration-style: wavy;
+  }
+  .example-card{
+    margin-left: 20px;
+  }
+  
+ .bgimage{
+  background-image: url('../assets/b.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+ }
