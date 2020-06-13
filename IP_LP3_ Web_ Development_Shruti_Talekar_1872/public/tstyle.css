@@ -1,0 +1,82 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+body {
+
+    font-family: 'Lobster', 'cursive';
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffcc00;
+}
+
+a:link {
+    background-color: yellow;
+    position: absolute;
+    bottom: 50px;
+    width: 10%;
+    height: 10%;
+    border: 3px solid #8AC007; 
+  }
+  
+  a:visited {
+    background-color: cyan;
+  }
+  
+  a:hover {
+    background-color: lightgreen;
+  }
+  
+  a:active {
+    background-color: hotpink;
+  } 
+
+
+.clock{
+    display:flex;
+}
+
+.clock div{
+    position: relative;
+    margin: 0 5px;
+    width: 200px;
+    height: 240px;
+}
+
+.clock div p{
+    position: relative;
+    display: flex;
+    width: 200px;
+    height: 160px;
+    justify-content: center;
+    background-color: #f2ed6f;
+    font-size: 80px;
+    border: none;
+    box-shadow: 0px 34px 0px rgba(0,0,0,0.56);
+}
+
+.clock div p:first-child{
+    border-radius: 20px 20px 0 0;
+}
+
+.clock div p:last-child{
+    font-size: 30px;
+    height: 80px;
+    background-color: #f4e04d;
+    border-radius: 0 0 20px 20px;
+}
+
+.clock div:last-child p{
+    background-color: #512b58;
+    color: white;
+
+}
+
+.clock div:last-child p:last-child{
+    background-color: #2c003e;
+    color: white;
+}

@@ -1,0 +1,95 @@
+body {
+    background-image: linear-gradient(to bottom right, red, yellow);
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
+    overflow: hidden;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  }
+  
+img{
+    border-radius: 40px;
+}
+
+
+h1{
+    width: 260px;
+    height: 260px;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 10s;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+  
+  @keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+  }
+
+  a {
+    width: 50px;
+    height: 50px;
+    background: red;
+    transition: width 2s, height 4s;
+  }
+ 
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    border-radius: 15px;
+    transform: translate(-50%,-50%);
+}
+.img-one{
+    position:relative;
+    top: 0;
+    left: 0;
+}
+.img-two, .img-three, .img-four{
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+.img-one{
+    animation:Slideright 3s infinite;
+    animation-delay: 3s;
+}
+.img-two{
+    animation:Slideleft 3s infinite;
+    animation-delay: 3s;
+}
+.img-three{
+    animation:Sliderights 3s infinite;
+    animation-delay: 3s;
+}
+.img-four{
+    animation:Slidelefts 3s infinite;
+    animation-delay: 3s;
+}
+
+@keyframes Slideright{
+    to {
+        transform: translateX(-250px);
+    }
+}
+@keyframes Slideleft{
+    to {
+        transform: translateY(280px);
+    }
+}
+@keyframes Sliderights{
+    to {
+        transform: translateX(-250px);
+    }
+}
+@keyframes Slidelefts{
+    to {
+        transform: translateY(-150px);
+    }
+}
+
+
+
