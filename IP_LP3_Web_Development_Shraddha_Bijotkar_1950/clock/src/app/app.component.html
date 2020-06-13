@@ -1,0 +1,41 @@
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<body class="bgimage">
+<div>
+  <mat-toolbar color="primary"><span>TIME IS MONEY</span></mat-toolbar>
+<br>
+</div>
+
+<div class="divi">
+
+
+<div class="col-sm-3 col-md-6" style="text-align: center;display: flex; justify-content: center; align-content: center;  max-width: 500px; max-height: 400px;">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image" style="align-items: center"></div>
+      <mat-card-title style="align-items: center;">INDIA </mat-card-title>
+      <mat-card-subtitle style="align-items: center;">IST - Indian Standard Time</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../assets/india.jpg" alt="INDIA">
+    <mat-card-content>
+      <p class="div3">
+        *India, officially the Republic of India
+       is a country in South Asia. It is the second-most populous country, the seventh-largest country by area, and the most populous democracy in the world. 
+      </p>
+    </mat-card-content>
+    
+
+  </mat-card>
+
+  </div>
+  <div class="col-sm-9 col-md-6" >
+  <button style=" margin-left: 80px !important; margin-top: 50px !important;" mat-button class= "button button1"  (click)="onClick()">WHAT'S THE TIME?</button>
+  <div class="div2">
+
+<h3 class="div3">Time in  " {{T.timezone}} "  is :  {{T.datetime.slice(11,19)}}  and date is : {{T.datetime.slice(0,10)}}</h3>
+
+<h3 class="div3">It's week {{T.week_number}} of year {{T.datetime.slice(0,4)}} in INDIA!</h3>
+</div>
+</div>
+</div>
+</body>
