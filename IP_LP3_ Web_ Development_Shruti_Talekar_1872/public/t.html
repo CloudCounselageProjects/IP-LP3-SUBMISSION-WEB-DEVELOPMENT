@@ -1,0 +1,51 @@
+<!Doctype html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>clock</title>
+ <link rel="stylesheet" href="tstyle.css">
+ <link rel="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+<div class="clock">
+<div><p class="hours">00</p><p>Hours</p></div>
+<div><p class="minutes">00</p><p>Minutes</p></div>
+<div><p class="seconds">00</p><p>Seconds</p></div>
+</div>
+</div>
+
+<script>  
+function clock(){
+
+const hours = document.querySelector(".hours")
+const minutes = document.querySelector(".minutes")
+const seconds = document.querySelector(".seconds")
+
+hours.innerHTML=new Date().getHours();
+minutes.innerHTML=new Date().getMinutes();
+seconds.innerHTML=new Date().getSeconds();
+
+if(minutes.innerHTML.toString().length==1){
+minutes.innerHTML="0"+ minutes.innerHTML;
+}
+
+if(seconds.innerHTML.toString().length==1){
+seconds.innerHTML="0"+ seconds.innerHTML;
+}
+
+if(hours.innerHTML.toString().length==1){
+hours.innerHTML="0"+ hours.innerHTML;
+}
+}
+const interval=setInterval(clock,1000)
+</script>
+
+
+<a href="index.html"> GO TO HOME PAGE </a> <br>
+<a href="d.html"> CLICK TO VIEW CURRENT DATE </a> 
+
+</body>
+</html>
+
