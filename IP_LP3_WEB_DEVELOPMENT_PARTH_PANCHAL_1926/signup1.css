@@ -1,0 +1,85 @@
+/*################## Nav Bar #####################*/
+body{
+	background-image: url("img1.jpg");
+}
+nav {
+	width: 100%;
+	margin: 0;
+}
+
+label,p{
+	font-weight: bold;
+}
+
+nav ul {
+	background-color: #eee;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+#zone{
+	color: solid black;
+	background: white;
+	font-size: 200%
+}
+
+ul.topnav li {
+	list-style: none;
+	float: left;
+}
+
+ul.topnav li.topnav-right {
+	float: right;
+}
+
+ul.topnav li a {
+	display: block;
+	text-decoration: none;
+	min-height: 16px;
+	text-align: center;
+	padding: 14px;
+	text-transform: uppercase;
+	color: #333333;
+	font-weight: bold;
+}
+
+ul.topnav li a:hover {
+	background-color: #333333;
+	color: white;
+}
+
+ul.topnav li.dropdownicon {
+	display: none;
+}
+
+/*/*  Importing google fonts */
+@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+
+
+.form-div {
+	margin: 50px auto 50px;
+	padding: 25px 15px 10px 15px;
+	border: 2px solid green;
+	border-radius: 5px;
+	font-size: 1.1em;
+	font-family: 'Lora', serif;
+	background-color: white;
+	opacity: 0.8
+}
+
+.form-control:focus {
+	box-shadow: none;
+}
+
+form p {
+	font-size: .89em;
+}
+ 
+.form-div.login {
+	margin-top: 100px;
+}
+
+.logout {
+	color: red;
+}
