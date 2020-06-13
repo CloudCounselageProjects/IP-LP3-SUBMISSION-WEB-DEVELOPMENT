@@ -34,7 +34,6 @@ HOW TO USE:
 
 
 
-NOTE: if index.html (in public directory) is viewed directly without starting the server, it won't be able to fetch the data from server (No Server exists). But it is 
-capable of showing date and time without backend, simply using Date() object in JavaScript.
+NOTE: if index.html (in public directory) is viewed directly without starting the server, it won't be able to fetch the data from server (No Server exists). But it is capable of showing date and time without backend, simply using Date() object in JavaScript.
 
 Thanks.
