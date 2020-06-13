@@ -1,6 +1,6 @@
 # IP-LP3-SUBMISSION-WEB-DEVELOPMENT
 
-I have prepared a Full-Stack website with REST API to show current date,time along with POST API to send the details from client to
+I have prepared a Full-Stack website with REST API to show current date,time along with POST request to send the details from client to
 localhost server for database collection.
 
 For database collection follow the following steps:
