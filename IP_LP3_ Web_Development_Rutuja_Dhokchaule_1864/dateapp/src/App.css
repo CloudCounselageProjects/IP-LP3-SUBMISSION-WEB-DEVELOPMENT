@@ -1,0 +1,52 @@
+.row-header{
+  margin:0px auto;
+  padding:0px auto;
+}
+
+.row-content {
+  margin:0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height:400px;
+}
+.footer{
+  background-color: #201f22;
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+  color: white;
+}
+
+.jumbotron {
+  padding:70px 30px 70px 30px;
+  margin:0px auto;
+  background-image: linear-gradient(to right, rgb(7, 7, 7,0.7), rgb(7, 7, 7)),url('/assets/images/wp.jpg');
+  background-attachment: fixed;
+  color:floralwhite;
+  border-radius: 0 !important;
+}
+.navbar-dark {
+  background-color: rgb(32, 31, 34);
+}
+.text{
+  background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.textdate {
+  background: linear-gradient(to right, #30CFD0 0%, #30CFD0 110%);
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+.datecss {
+  background: linear-gradient(to right, #30CFD0 0%, #330867 70%);
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 4vw;
+}
+.texttime{
+  background: linear-gradient(to right, #30CFD0 10%, #330867 70%);
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 8vw;
+}
