@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="image">
+        <div class="header">
+            REST API to tell system date and time by an API call
+        </div>
+            <div class="box">
+                <div *ngFor="let item of items">
+                    <div class="heading">Time Zone:&nbsp;</div>
+                    <div class="heading">{{ item.timezone }}</div>
+                    <br><br>
+                    <div class="heading">Date and Time:&nbsp;</div>
+                    <div class="heading">{{ item.datetime }}</div>
+                    <br><br>
+                    <div class="heading">Day of Week:&nbsp;</div>
+                    <div class="heading">{{ item.day_of_week }}</div>
+                    <br><br>
+                    <div class="heading">Day of year:&nbsp;</div>
+                    <div class="heading">{{ item.day_of_year }}</div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
