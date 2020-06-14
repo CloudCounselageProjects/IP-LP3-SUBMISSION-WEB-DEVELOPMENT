@@ -1,0 +1,80 @@
+
+<mat-toolbar color="primary">
+  <span>Get Your Date and Time!!!!!!</span>
+</mat-toolbar>
+<mat-card>
+
+  <form (submit)="onAddLocation(postForm)" #postForm="ngForm">
+    <mat-card>
+    <mat-card-title>
+    Press the Button and 
+   Get the current date, month, year and time in hh:mm:ss format!! 
+    </mat-card-title>  
+   </mat-card>
+  <mat-card *ngIf="show">
+    <mat-card-header><h3>Date </h3></mat-card-header>
+    {{results.date}} / {{results.month}} / {{results.year}} 
+   </mat-card>
+
+     <mat-card *ngIf="show">
+    <mat-card-header><h3>Time</h3></mat-card-header>
+    {{results.hours}} : {{results.minutes}} : {{results.seconds}} 
+   </mat-card>
+
+
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">
+      Press
+    </button>  
+  </form>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Use The REST API to get date and time!!</mat-card-title>
+    <mat-card-subtitle> The key is in not spending time, but in investing it. – Stephen R. Covey</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="../assets/images/date.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+ 
+    </p>
+  </mat-card-content>
+
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
