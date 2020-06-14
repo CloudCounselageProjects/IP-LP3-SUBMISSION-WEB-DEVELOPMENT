@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Time and Date</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="time.css">
+    <script>
+        $(document).ready(function() {
+            $('#btn').click(function() {
+ 
+                var link = $("<a>");
+                link.attr("href", "http://worldtimeapi.org/timezone/Asia/Kolkata");
+                link.text("Time");	
+                link.addClass("link");
+ 
+                $(".box").html(link);
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <body bgcolor="black">
+    <div class = "back">
+    	<div class="div2">
+			<h1>Click to see date and time. </h1>
+			<br>
+		    <div class="box" id="box"></div>
+		    	<div class="b">
+		    		<p><input type="button" id="btn" value="Link"></p>
+		    	</div>
+	    	</div>
+    </div>
+    
+    
+</body>
+</html>
