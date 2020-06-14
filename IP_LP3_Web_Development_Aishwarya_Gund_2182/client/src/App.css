@@ -1,0 +1,172 @@
+
+nav .navbar-nav li a{
+  color: white !important;
+  font-size: 20px;
+  font-family: georgia;
+  
+  }
+nav .nav-link:hover{
+  background-color: #FFB300;
+  
+}
+.navbar {
+  background-color: #000; 
+}
+
+.row-content {
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+  border-bottom: 1px ;
+  border-top: 1px ;
+  min-height:400px;
+  
+  
+}
+
+
+.jumbotron {
+  padding:70px 30px 70px 30px;
+  margin:0px auto;
+  background-image: linear-gradient(to bottom, rgba(128, 128, 123, 0.404) 100%,rgb(56, 46, 46) 100%),url("./assets/images/home1.jpg") ;
+  background-repeat: no-repeat;
+  background-size: 100% ;
+  color:floralwhite;
+}
+
+
+.resto_name {
+    position: relative;
+    top: 0px;
+    right: 90px;
+    color:#FFD740;
+    font-style: italic;
+    font-family: georgia;
+    font-size: 90px;
+    
+    }
+    .service-outer{
+      height: 1300px;
+      width: 100%;
+      background: rgba(8, 8, 8, 0.938) ;
+      margin-top: 0px;;
+    }
+.specials
+    {
+      margin-top: 20px;
+      height: 45%;
+      background: rgb(27, 24, 24);
+      display: inline-block;
+      width: 100%;
+            
+    }
+  .discover{
+    font-family: cursive;
+    font-size: 40px;
+    color:#F9A825;
+    text-align: center;
+    margin-top: 20px;
+  }
+  hr { 
+    position: center; 
+    top: 20px; 
+    width: 60%;
+    height: 1px; 
+    background: #B0BEC5; 
+    margin-bottom: 75px; 
+} 
+.menu-item
+{
+  margin-top: 20px;
+  height: 45%;
+  background-image:linear-gradient(to bottom, rgba(202, 194, 194, 0.24) 100%,rgba(24, 23, 23, 0.849) 0%), url("./assets/images/home3.jpg");
+  display: inline-block;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover ;
+}
+.menus{
+  font-family: cursive;
+  font-size: 50px;
+  text-align: center;
+  color: #EEEEEE;
+  margin-top: 40px;
+}
+.description
+{
+  font-family: cursive;
+  font-size: 20px;
+  text-align: center;
+  color: #FFF59D;
+  margin-top: 40px;
+}
+
+
+.col-12.col-md-8
+{
+  background-color: #000;
+  border-radius: 90px;
+  color:#FFECB3 ;
+  text-align: left;
+  font-family: Georgia;
+ 
+  
+}
+
+.container.col-md-4{
+  border-radius: 5px;
+  background-color: #E0E0E0;
+  padding: 20px;
+  
+}
+.book-button{
+
+  background-color: #FFC107;
+  float:center;
+  border: none;
+  color:#000;
+  border-radius: 15px;
+  width:70%;
+  font-family: 'georgia';
+  font-size: 20px;
+  font-weight: 800;
+}
+.book-button:hover{
+  background-color: #000;
+  
+  color:#EEEEEE;
+}
+.about
+{
+ 
+  height: 700px;
+  background-image:linear-gradient(to bottom, rgba(43, 40, 40, 0.185) 100%,rgba(24, 23, 23, 0.849) 0%), url("./assets/images/about2.jpg");
+  display: inline-block;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size:100%;
+}
+.text-center.col-md-6{
+  
+  margin: 150px auto;
+  border-radius: 0px;
+}
+a {
+  color: #FFF;
+  
+}
+a:hover {
+   color: #FFD740;
+}
+
+
+address{
+  font-size:80%;
+  margin:0px;
+  color:#fff;
+}
+.footer{
+  background-color:#000;
+  margin-top:0px ;
+  padding: 20px 0px 20px 0px;
+  color: white;
+}
