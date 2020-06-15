@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" style="border-radius: 0;" id="mainNav">
+  <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Date N' Time</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-0 mx-lg-1"><img href="#api" src="assets/img/api.png" width="50px" height="50px" alt="API"/></li>
+
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#api" style="font-size: 20px;">API</a></li>
+          </ul>
+      </div>
+  </div>
+</nav>
+<!-- Masthead-->
+<header class="masthead bg-primary text-white text-center">
+  <div class="container d-flex align-items-center flex-column">
+      <!-- Masthead Avatar Image-->
+      <img class="masthead-avatar mb-5" src="assets/img/avataaars.png" alt="" />
+      <!-- Masthead Heading-->
+      <h1 class="masthead-heading text-uppercase mb-0" style="font-size: 40px;">Welcome to my APP</h1>
+      <!-- Icon Divider-->
+      <div class="divider-custom divider-light">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"></div>
+          <div class="divider-custom-line"></div>
+      </div>
+      <!-- Masthead Subheading-->
+      <p class="masthead-subheading font-weight-light mb-0" style="font-size: 25px;">Full Stack Web Application</p>
+  </div>
+</header>
+<br>
+
+<section style="text-align: center;" id="api">
+  <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 40px; color: darkslategray; ">Get Current Date & Time:</p>
+  <br>
+  <button (click)="OnclickofButton()" class="btn btn-primary btn-xl">Send Request</button>
+  <br><br>
+  <h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: firebrick; font-size: 40px;">{{date}}</h2>
+</section>
+<br><br>
+
+<footer class="footer text-center">
+  <div class="container">
+      <div class="row">
+          <!-- Footer Location-->
+          <div class="col-lg-3 mb-5 mb-lg-0">
+              <h4 class="text-uppercase mb-4"></h4>
+              <p class="lead mb-0"></p>
+          </div>
+          <!-- Footer Social Icons-->
+          <div class="col-lg-6 mb-5 mb-lg-0">
+              <h3 class="text-uppercase mb-4" style="font-size: 30px;"><u>About</u></h3>
+              <p class="lead mb-0" style="font-size: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Date N' Time is a Full stack Single Page web application, which displays <a href="">Current Date and time.</a></p>
+              <br>
+              <p class="masthead-subheading font-weight-light mb-0" style="font-size: 25px; color: silver; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Angular | Nodejs | Express</p>
+            </div>
+          <!-- Footer About Text-->
+          <div class="col-lg-3">
+              <h4 class="text-uppercase mb-4"></h4>
+              
+          </div>
+      </div>
+  </div>
+</footer>
+<!-- Copyright Section-->
+<div class="copyright py-4 text-center text-white">
+  <div class="container"><small>Copyright ©daten'time2020</small></div>
+</div>
