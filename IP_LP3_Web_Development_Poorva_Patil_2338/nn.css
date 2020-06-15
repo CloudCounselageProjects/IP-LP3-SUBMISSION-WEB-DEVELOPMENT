@@ -1,0 +1,50 @@
+body{
+	
+	padding:100;
+}
+form{
+	
+padding:50px;
+border-style:solid;
+width:300;
+background-color:green;
+text-align:center;
+}
+.txt1{
+	font-family:sans-serif;
+	border-style:solid;
+
+	color:yellow;
+	
+}
+.txtuser{
+	border-radius:10%;
+}
+.txtupass{
+	border-radius:10%;
+}
+.a{
+	background-color:white;
+}
+table{
+	background-color:yellow;
+	text-align:center;
+	box-shadow:5px 10px grey;
+	
+}
+table:hover{
+	background-color:orange;
+	text-align:center;
+	box-shadow:5px 10px grey;
+	
+}
+
+
+th,td:hover{
+	padding:15px;
+	background-color:violet;
+}
+th,td{
+	padding:15px;
+	background-color:green;
+}
