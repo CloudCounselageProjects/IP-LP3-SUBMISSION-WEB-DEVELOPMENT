@@ -1,0 +1,184 @@
+body {
+  font-family: "Montserrat";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  color: black;
+}
+
+h2 {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+p {}
+
+
+/* headings */
+.big-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+  text-align: center;
+  padding-top:20px;
+  margin-bottom: 0px;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.container-fluid {}
+
+/* title section */
+.colum1-title {
+  text-align: left;
+}
+
+.title-colum-img {}
+
+#title {
+  background-color: #ff4c68;
+  color: #fff;
+  text-align: center;
+  line-height: 2;
+  padding: 50px;
+
+}
+
+/* Navigation bar */
+.logo-navbar {
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 3rem;
+}
+
+.navbar {
+  padding-left: 0px;
+  margin-bottom: 4.5rem;
+}
+
+.nav-item {
+  padding: 0px 18px 0px 18px;
+}
+
+.nav-link {
+  font-size: 1.5rem;
+  font-family: "Montserrat-dash-light"
+}
+
+/* Download Button */
+.Download-button {
+  margin-right: 200px;
+}
+
+.contactme_button {}
+
+/* <this is div */
+.button_contactme {
+  text-align: center;
+  padding-top: 40px;
+}
+
+/* title image */
+.Title_image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+}
+
+/* services section */
+#services{
+  background-color: #f2f3f5;
+  padding: 50px;
+}
+
+.card{
+
+}
+.card-text {
+  font-size: 1rem;
+  line-height:1.3;
+}
+
+.card-logo {
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.card-whole{
+
+}
+.card-title{
+  font-size:2.3rem;
+
+
+}
+
+/* testimonials section */
+#testimonials {
+  background-color: #ff4c68;
+  margin:0px;
+}
+.Testonomial-padding{
+  padding: 7% 15%;
+  text-align:center;
+}
+.Testonomial-headings{
+  color:#fff;
+}
+
+.testimonial-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+
+/* Portfolio section */
+#Portfolio{
+  padding:50px;
+  background-color:#f2f3f5;
+}
+#portfolio-heading{
+  margin-bottom:50px;
+}
+.portfolio-pics{
+  width:100%;
+  height:500px;
+}
+.portfolio-title{
+  text-align: center;
+}
+
+
+/* footer section */
+.footer-logo {
+  margin: 20px 10px;
+}
+.social-icon {
+  margin: 20px 10px;
+}
+#footer{
+  padding: 150px;
+  text-align:center;
+  background-color:#fff;
+
+}
