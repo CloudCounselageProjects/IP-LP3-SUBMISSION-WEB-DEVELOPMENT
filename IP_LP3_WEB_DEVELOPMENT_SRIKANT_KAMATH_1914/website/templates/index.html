@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% block title %} Home Page {% endblock %}
+{% load static %}
+
+{% block css %}
+/* Styling For the Background Image */
+html,body
+{
+    background:url('/static/website/index_bg.jpg') center center no-repeat;                                  
+    height: 100% !important;                                                     /* The height is set to 100% so that the background image covers the webpage completely Even on Small screens*/
+    background-size: 1366px 738px;                                     
+} 
+
+/* Styling For the MAIN Image */
+img
+{
+  border-radius:90%;                         /* For making the Image Appear Circular */
+  margin-top:150px;                          /* Position of the Image From the Top */
+  margin-right:20px;                         /* Position of the Image From the Right */
+}
+
+/* Styling of the Text that is present BELOW the Image */ 
+#intro p
+{
+    color: white; 
+    font-family: 'Chau Philomene One', sans-serif;         /* Taken From Google Fonts */
+    font-size: 2.0rem;
+}
+
+/* Styling For the Text that Displays ONLY the name */ 
+.typed
+{
+    margin-bottom:0px;         /* For setting the distance between the Printed Text and the Text to Appear via JS */ 
+}
+
+/* Margin Attribute for the Text to Appear Is set From Here */ /* Crucial For Small Screen View */
+.typing
+{
+    margin-left:500px;
+}
+
+/* Pseudo-selector 'after' used here which Specifies the Styling for the Text that would be Added via JS */
+.typing::after
+{
+    content:"";
+    width: 5px;                                  /* For setting the Width between the Cursor and the Word Getting Shown */
+    height: 35%;                                 /* Height of the CURSOR */
+    position: absolute;                          /* For Positioning The Cursor properly w.r.t Text Rendered */
+    border-right: 2px solid white;               /* For Specifying the CURSOR Size,Color and Width */
+    animation: blink 0.5s ease-in infinite;               /* Animation Based on the Keyframe and Animation Effects Provided */
+}
+
+/* Creating Keyframe named 'blink' To Depict a Blink Effect */
+@keyframes blink
+{
+    0%
+    {
+       opacity: 0; 
+    }
+    100%
+    {
+        opacity: 1;
+    }
+}
+
+/* Media Query For Screen-Size SMALLER than 768px */
+@media(max-width:768px)                                   
+{
+    /* Background Image's Size is set as 'cover' On Screen-Size Reduction */
+    html,body
+    {
+        background-size:cover;
+    }
+
+    /* MAIN Image Styling */
+    img
+    {
+        margin-top:100px;
+        width:15%;                                        /* Width of image becomes 15% whenever the browser screen-size becomes 768px or LESS */
+    }
+
+    /* Text Styling */
+    #intro p
+    {
+        text-align: center !important;                    /* Text is Aligned to the Center of the Screen and Adjustment using 'margin' attributes */
+        margin-left: 2px;                                 
+        margin-right:20px;
+    }
+}
+
+/* Media Query For Screen-Size BETWEEN 768px and 1366px */
+@media(max-width:1366px) 
+    and (min-width:768px)                                  
+{
+    img
+    {
+        width:12%;                                        /* Width of the Image Becomes 12% whenever the dimension of the window lies between 1366px and 768px */
+    }
+
+    /* Text Styling */
+    #intro p
+    {
+        text-align: center !important;                    /* Text Aligned To Center + Some Adjustments w.r.t Screen via 'margin' attributes */
+        margin-left:5px;
+        margin-right: 25px;
+    }
+}
+
+{% endblock %}
+
+{% block body %}
+                                                
+    <div class="container">                                               
+        <div class="row">
+            <div class="col md-12 text-center">                              <!-- 'text-center' is mentioned so that the IMAGE is aligned in the 'center' position -->
+                <img src="{% static 'website/self.jpeg' %}">          
+            </div>
+        </div>
+    </div>
+
+    <section id="intro">                                                      
+        <div class="container">                                                   
+            <div class="row">
+                <div class="col md-12">  
+                    <!-- Class named 'typed' for CSS Targeting Purposes -->
+                    <p class="typed">Hi, I am Srikant Kamath</p>                                     
+                    <p class="typing"></p>                                    <!-- Class assigned to the paragraph and data gets loaded via the JS file -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block js %}
+<!-- JS File Link is provided Here -->
+<script src="{% static 'js/text.js' %}"></script>
+{% endblock %}

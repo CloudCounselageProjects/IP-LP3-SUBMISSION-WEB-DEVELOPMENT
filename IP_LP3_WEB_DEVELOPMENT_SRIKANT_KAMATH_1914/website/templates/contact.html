@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title %} Contact Page {% endblock %}
+{% load static %}
+
+{% block css %}
+
+/* Property for Background Image is set over here via the 'section' id */
+#contact
+{    
+    background: url('/static/website/contact_bg.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+/* Text Data within the Container is Targeted From Here */
+.contact-text
+{
+    background: rgba(255,255,255,0.4);                    /* Opacity of the text-block is set to 40% */
+    color: black;                                         /* Used to Assign Black Color to the Main Headings of the Fields i.e 'Name'/'Email'/'Message' */
+    padding: 2rem;                                        /* 'padding' set for data Lying INSIDE the block */
+}
+
+/* Horizontal Scrollbar HIDDEN so that it does not Interfere with the Animation */
+body 
+{
+    overflow-x:hidden;  
+}
+
+/* DISABLING Pointer Events by DEFAULT for all 3 Form Fields and Later ENABLING them via JS */
+#name, #desc, #email
+{
+    pointer-events:none;
+}
+
+/* Container Specification Done Over here */
+.container
+{
+    padding-top:65px;                      
+    margin-left:-10px;                      
+    padding-right:40px;
+    width: 100%;                                /* Width of the Container */
+    padding-bottom:15px;                        /* Spacing from bottom w.r.t Image */
+}
+
+/* For background Color of the Data Fields */
+.form-control
+{
+    background: darkgray;
+}
+
+/* Specifying color of Placeholder text */
+.form-control::placeholder
+{
+    color:black;
+}
+
+/* Specifying Email Subtext color i.e Color of the Text below the Email Field */
+#email-subtext 
+{
+    color:black;
+}
+
+.btn
+{
+    position: relative;                              /* Relative positioning of utton so that pseudo-selector can target it */
+    bottom:0px;                                      /* 'bottom' attribute set to 0px INITIALLY */
+}
+
+/* Psuedo-Selector for raising the Button using 'bottom' attribute */
+.btn:hover
+{
+    bottom: 3px;
+}
+
+/* Resizability of the Textarea is set to None via the 'resize' attribute */
+textarea
+{
+    resize:none;
+}
+
+/* CSS For Placing the Paper-Plane Font-Awesome Icon */
+.list-inline-item
+{
+    float:right;
+    color: black;
+}
+
+{% endblock %}
+
+{% block body %}
+<section id="contact">                                <!-- Encapsulating the Container within a Section -->
+    <div class="container">
+        <div class="col-md-6">                        <!-- For acquiring Half of the Page -->
+            <div class="contact-text">
+                <!-- Paper Plane Icon -->
+                <li class= "list-inline-item"><i class="fas fa-paper-plane fa-3x" aria-hidden="true"></i></li>
+
+                <h3>Get in Touch</h3>
+
+                <p class="lead">You can Contact Me Over Here..</p>
+                
+                <!-- Method is 'post' and no 'action' is specified here because the URL of Page after form submission is Exactly as that of Page before Form Submission -->
+                <form method="post"> {% csrf_token %}
+                    
+                    <!-- Contact Form -->
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required="True" placeholder="Enter Your Name Here">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required="True" aria-describedby="email-subtext" placeholder="Enter your Email Here">
+                        <small id="email-subtext" class="form-text"><strong>Email Won't be Shared with Anyone Else!!</strong></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="desc">Message</label>
+                        <textarea class="form-control" id="desc" name="desc" rows="3" placeholder="Please Enter Your Message Here" required="True"></textarea>
+                    </div>
+                    
+                    <hr>
+
+                    <!-- Button -->
+                    <button type="submit" class="btn btn-warning">Send The Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/slide.js' %}"></script>
+{% endblock %}

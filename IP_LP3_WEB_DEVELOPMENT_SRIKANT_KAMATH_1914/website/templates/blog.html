@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} My Blogs {% endblock %}
+{% load static %}
+
+{% block css %}
+/* Styling for the Background Image */
+html,body
+{
+    background:url('/static/website/blog_bg.jpg') center center no-repeat;                                   
+    background-size: 1366px auto;                                     
+} 
+
+/* Pseudo-Element For Targeting Only on the Button Being Hovered Upon */
+.col-md-6:hover
+{
+    position:relative;
+    bottom:10px;    
+}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <!-- Padding attribute assigned via 'py-5' for Proper Spacing Amongst Various Blogs -->
+    <div class="row py-5">
+
+        <!-- 'item' variable iterates through the 'myposts' dictionary which stores the Values of 'Blogpost' DB and is passed from 'views.py' File -->
+        {% for item in myposts %}
+        <!-- Every Blog Post is given a size of 6 colums to Acquire HALF the Page-->
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm">
+                <div class="col p-4 d-flex flex-column">
+                    <strong class="d-inline-block mb-2 text-primary">{{item.category}}</strong>
+                    <h3 class="mb-1">{{item.title|slice:"0:18"}}..</h3>
+                    <div class="mb-1 text-muted">{{item.pub_date}}</div>
+                    <p class="mb-auto">{{item.chead0|slice:"0:100"}}......</p>
+                    <a href="blogpost/{{item.post_id}}">Read More..</a>
+                </div>
+                
+                <!-- Attributes added so that Thumbnail shown ONLY on LARGE screens and Else it remains HIDDEN -->
+                <div class="col-auto d-none d-lg-block">
+                    <img src="/media/{{item.thumbnail}}" width="200" height="250" />
+                </div>
+            </div>
+        </div>
+        <!-- We check if the 'for' loop iterating through 'myposts' is Divisble by 2 or not..if Yes then a new <div>-with class of 'row' is Declared and Content moves to the NEXT row -->
+        {% if forloop.counter|divisibleby:2 %}
+        </div> <div class="row">
+        {% endif %}
+
+        <!-- 'For' Loop Ends Here -->
+        {% endfor %}
+    </div>     <!-- 'row' Ends Here -->
+</div>
+    
+{% endblock %}

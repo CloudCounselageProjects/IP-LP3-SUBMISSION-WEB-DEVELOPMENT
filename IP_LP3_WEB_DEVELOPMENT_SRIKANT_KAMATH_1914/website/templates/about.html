@@ -1,0 +1,455 @@
+{% extends 'base.html' %}
+{% block title %} About Page {% endblock %}
+{% load static %}
+
+{% block css %}
+/* Styling for Background Image of the section 'abt' via its Id */
+#abt
+{
+    background: url('/static/website/abt_bg.jpg') center repeat;
+    background-position-x:190px;
+    background-size: cover;
+}
+
+/* Styling for Background of section 'skills' */
+#skills
+{
+    background: #262F36;
+    background-size:cover;
+    padding-bottom:5px;
+}
+
+/* Data within the Container is Targeted From Here */
+.about-text
+{
+background: rgba(0,0,0,0.8);  /* Background for text section is set to 0 and Opacity of the text block is set to 80% */
+color: white;                 /* Color of the Text inside the Block is set to White */
+padding: 2rem;                /* 'padding' for Data Present INSIDE the text-block */
+}
+
+/* Container Specification Done Over here */
+.container
+{
+margin-left:20px;
+padding-top:50px;
+width: 80%;                   /* Width of the Container is set to 80% */
+margin-bottom:5px;            /* Spacing from Bottom */
+padding-bottom:30px;          /* Spacing between the Container end and The BG Image */
+}
+
+/* Table Properties are set from here */
+table 
+{
+font-family: arial, sans-serif;
+width: 90%;                         /* Width is set to 90% so that the RHS Entries of the Table dont Stick to the END of the Container */
+}
+
+/* Padding Assigned to Table Headers and Data */
+td, th
+{
+padding: 4px;
+}
+
+/* Specific Table Entries Targeted in order to keep them on LHS at all Times */
+table #alignment
+{
+text-align: left;
+}
+
+/* Specific Table Entries Targeted in order to keep them on RHS at all Times */
+table #alignment1
+{
+float:right;
+}
+
+/* Heading Above the Icons */
+h5
+{
+text-align:center;
+}
+
+/* Alignment Of Icons */
+#icons 
+{
+text-align: center; 
+}
+
+/* Initial Icon Specification */
+#icons .fab
+{
+color: white;                                                    /* Initial Color of ALL icons is set to white */
+margin: 5px 15px;                                                /* Spacing between Individual icons */
+position: relative;                                              /* Relative positioning of icon is done for pseudo-element Targeting */
+bottom: 0px;                                                     /* Initial 'bottom' co-ordinate of all pixels is set to 0px */
+transition: all 0.2px ease-in-out;                               /* Transition effect applied to 'all' with a speed of '0.2px' and motion would be'ease-in-out' */
+}
+
+/* Hovering Effects For the Icons */
+#icons .twitter:hover
+{ 
+color: #6cadde; 
+bottom: 5px;                                                     /* Reassigning 'bottom' value for Raising of the Icon */
+}
+
+#icons .facebook:hover
+{ 
+color: #045a9c; 
+bottom: 5px; 
+}
+
+#icons .github:hover
+{ 
+color: #ad5c51;
+bottom: 5px; 
+}
+
+#icons .linkedin:hover
+{ 
+color: #2f5570;
+bottom: 5px; 
+}
+
+/* Media Query for Screen Size Less than 768px */
+@media(max-width:768px)                                   
+{
+    .container
+    {
+        width:100%;                                         /* Container Width is set to 100% */
+    }
+    
+    body 
+    {
+        overflow-x: hidden;                                 /* For Hiding Horizontal scrollbar */ 
+    }
+}
+
+/* Media Query For Screen Size between 768px to 991px */
+@media(max-width:991px) 
+    and (min-width:768px)                                  
+{
+   .container
+   {
+       width:100%;                                          /* Container Width is set to 100% */
+   }
+}
+
+/* Styling of Heading Text of the 'Skills' Section */
+#skills h1
+{
+    max-width: fit-content;              /* So that Width of Text remains Restricted till its width and not for the Whole Row */
+    font-size:2rem;
+    color:White;
+}
+
+/* Styling of the Class in which Paragraph is Embedded */
+div[class^='tag-']
+{
+    width:120px;
+    height:30px;
+}
+
+/* Paragraph of Any class Beginning with 'tag-' is selected using the '^=' CSS Selector and The below Styling is Applied to it */
+div [class^='tag-'] p
+{
+    color:#fff;
+    padding-left:20px;          
+    font-size:1.1rem;
+    padding-top:3px;             /* Spacing from top of its Own i.e 'p' tag */
+}
+
+/* Progress Bar Styling + Setting up its Dimensions */
+.progressbar
+{
+    position:relative;             /* For containing values within the Bar */
+    width:600px;
+    height:20px;
+    border: 2px solid green;   
+    border-radius:10px;
+    margin-top:7px;                /* Position from top w.r.t Text and Other Progress Bars */
+    overflow:hidden;               /* To Prevent Values From Exceeding */
+}
+
+/* Any class Beginning with 'bar-' is selected using the '^=' CSS Selector and The below Styling is Applied to it */
+/* This styling is For the value INSIDE the Progress Bar */
+div [class^='bar-']
+{
+    position:absolute;                  
+    background-color:#48CFAD;            /* Color of the Value */
+    height:10px;
+    border-radius:20px;
+    margin:2.7px;                        /* Spacing of the Value INSIDE the Bar w.r.t Bar Size */
+}
+
+/* Setting up Display for Tags + Progress-Bars */
+.list
+{
+    display:flex;
+    margin-bottom: 30px;                /* Spacing from Bottom w.r.t Bars */
+}
+
+/* Styling w.r.t Progress Bar Value */
+.bar-html,
+.bar-css,
+.bar-django,
+.bar-js
+{
+    width: calc(0 - 6px);               /* Width of the Value inside Bar initially.. '6px' Subtracted for Ideal Adding/Removal of Values without overlapping Borders */
+}
+
+/* 'study' Container Studying */ 
+.study
+{
+    margin-left:130px;              
+    opacity:0;                       /* Opacity Initially set to 0 which later Changes to 1 Via JS */
+}
+
+/* Background for section  with id 'studies' */
+#studies
+{
+    background: #f0f0f0;
+}
+
+/* Styling for Container Class 'c1' */
+.c1
+{
+    margin-left:110px;
+}
+
+/* Styling for Text Below the Main Heading */
+#skill-info
+{
+    color:white;
+}
+
+/* Media Query for Adjusting the Containers 'c1' and 'study' When Smaller dimensions Are To be considered */
+@media (max-width: 767px)
+and (min-width:500px)                                  
+{
+    #studies .study 
+    { 
+        margin-left:10px;
+    }
+    #skills .c1
+    { 
+        margin-left:5px;
+    }
+}
+
+/* Media Query for HIDING the Horizontal SCROLL bar */
+@media (max-width: 1366px)
+and (min-width:767px)                                  
+{
+    html,body
+    { 
+        overflow-x:hidden;
+    }
+}
+
+{% endblock %}
+
+{% block body %}
+
+<!-- 'About' Section -->
+<section id="abt">
+    <div class="container">
+        <div class="col-md-9">                 <!-- For occupying 3/4th of the Page -->
+            <div class="about-text">
+                <h3>About me</h3>
+                <p class="lead">Hi, I am Srikant Kamath currently a student of Third Year Computer Engineering At DJ
+                    Sanghvi College Of Engineering,Vile Parle.</p>
+                <p>I have been working upon my web development skills and thus have knowledge about several programming and scripting languages such as HTML, CSS, JS, Python etc.
+                   Regarding Back-end Web development,I am Familiar in Python Django and Flask to some extent.</p>
+
+                <!-- <table> tags for declaring Personal data in the Text-block -->
+                <table>
+                    <tr>
+                        <!-- 'id' assigned For CSS Targeting -->
+                        <th id="alignment">Birthday</th>
+                        <th id="alignment1">Age</th>
+                    </tr>
+                    <tr>
+                        <td id="alignment">4 December 2000</td>
+                        <td id="alignment1">19</td>
+
+                    </tr>
+
+                </table>
+
+                <hr>
+
+                <table>
+                    <tr>
+                        <th id="alignment">Email</th>
+                        <th id="alignment1">Occupation/Profession</th>
+                    </tr>
+                    <tr>
+                        <td id="alignment">kamathsrikant@gmail.com</td>
+                        <td id="alignment1">Student</td>
+                    </tr>
+                </table>
+
+                <hr>
+
+                <h5>Follow me on the web</h5>
+
+                <!-- Section created separately for icons -->
+                <section id="icons">
+                    <ul class="list-inline">
+                        <a href="https://twitter.com/SrikantKamath" target="blank">
+                            <!-- Font Awesome Icons Created -->
+                            <li class="list-inline-item"><i class="fab twitter fa-twitter-square fa-3x"
+                                    aria-hidden="true"></i></li>
+                        </a>
+                        <a href="https://www.facebook.com/srikant.kamath" target="blank">
+                            <li class="list-inline-item"><i class="fab facebook fa-facebook-square fa-3x"
+                                    aria-hidden="true"></i></li>
+                        </a>
+                        <a href="http://github.com/srikant946" target="blank">
+                            <li class="list-inline-item"><i class="fab github fa-github-square fa-3x"
+                                    aria-hidden="true"></i></li>
+                        </a>
+                        <a href="https://www.linkedin.com/in/srikant-kamath-8a3892199/" target="blank">
+                            <li class="list-inline-item"><i class="fab linkedin fa-linkedin fa-3x"
+                                    aria-hidden="true"></i></li>
+                        </a>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Educational Qualification Section -->
+<section id="studies">                               <!-- Section encapsulating the 'study' container -->
+    <div class="container study">               
+        <h2 class="text-center">Educational Qualifications</h2>
+        <p class="lead text-center">
+            “What Sculpture is to a block of marble, Education is to the human soul.” -- Joseph Addison
+        </p>
+
+        <hr>        
+
+        <!-- All Rows Contained within the Class 'education' -->
+        <div class="education">
+            <div class="row"> 
+                <div class="col-md-6">           <!-- For Acquiring Half Row Space -->
+                    <h4>Dwarkadas Sanghvi College Of Engineering</h4>
+                    <p class="years">
+                        Aug 2019 - Current</p>
+                </div>
+                <div class="col-md-6">           <!-- Acquiring The Other Half Of the Page -->
+                    <p>
+                        <strong>Course -- Computer Engineering</strong>
+                        <br>
+                        <span class="hidden-phone">Currently in <strong>THIRD</strong> year of Computer Engineering Here. Over the One Year that I have been here..I attained Knowledge about Operating Systems, Python Programming, Algorithms, Logic Design etc.
+                            Programming Languages such as Java and Python were even More Profoundly Learnt by me.
+                        </span>
+                        <br>
+                        <span class="connect">
+                            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            <a href="https://www.facebook.com/pages/Dwarkadas-J-Sanghvi-College-of-Engineering/106124026086436" target="blank">DJ Sanghvi College Of Engineering</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Thakur Polytechnic</h4>
+                    <p class="years">
+                        Jun 2016 - May 2019</p>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        <strong>Course -- Diploma In Information Technology</strong>
+                        <br>
+                        <span class="hidden-phone">During my Tenure of <strong>THREE</strong> years there, the Focus was on Technically Strong Subjects such as Database Management, Electrical Technology, Networking Aspects, Software Engineering, Microprocessor Etc.
+                            From a Programming Perspective, the Languages taught were C, C++, Core Java and Advanced Java which consisted of Swing/Applet etc In the Final Year.
+                        </span>
+                        <br>
+                        <span class="connect">
+                            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            <a href="https://www.facebook.com/tpolymumbai/" target="blank">Thakur Polytechnic</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>St Joseph's High School</h4>
+                    <p class="years">
+                        Jun 2006 - Mar 2016</p>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        <strong>Course -- Primary And Secondary School Education - (SSC)</strong>
+                        <br>
+                        <span class="hidden-phone">Completed my Primary and Secondary Schooling Here.
+                            The fundamentals of HTML were Taught Specifically in School.
+                            Also, the Basic Knowledge of Computer Applications such as Powerpoint/Word/Excel were Attained Over Here.
+                        </span>
+                        <br>
+                        <span class="connect">
+                            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            <a href="https://www.facebook.com/StJosephsHighSchoolKandivli/" target="blank">St Joseph's High School</a>
+                        </span>
+                    </p>
+                </div>
+            </div>                <!-- End of 'Last' Row -->
+        </div>              <!-- End of class 'education' -->
+    </div>           <!-- End of container 'study' -->
+</section>
+
+<!-- Skill Slider Section --> 
+<section id="skills">                       <!-- Section encapsulating the Container 'c1' -->       
+    <div class="container c1">
+        <h1 class="but">Skills</h1>         <!-- Class Assigned For Targeting via JS -->
+
+        <p id="skill-info">Hover Over the Main Heading To Find out More!!</p>      <!-- Class assigned for CSS Purposes -->
+
+        <div class="list">                      <!-- 'list' class is responsible for Appropriate Placement of Tag and Progress Bar -->
+            <div class="tag-html">              <!-- Tag Specification -->
+                <p>HTML</p>
+            </div>
+            <div class="progressbar">           <!-- Progress Bar Specification -->
+                <div class="bar-html"></div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="tag-css">
+                <p>CSS</p>
+            </div>
+            <div class="progressbar">
+                <div class="bar-css"></div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="tag-js">
+                <p>JS</p>
+            </div>
+            <div class="progressbar">
+                <div class="bar-js"></div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="tag-django">
+                <p>Django</p>
+            </div>
+            <div class="progressbar">
+                <div class="bar-django"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<!-- JS File Link is provided Here -->
+<script src="{% static 'js/progress.js' %}"></script>
+{% endblock %}

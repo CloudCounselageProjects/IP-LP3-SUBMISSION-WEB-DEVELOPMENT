@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta property="fb:admins" content="srikant.kamath"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title> {% block title %} {% endblock %} </title>
+
+    <!-- Bootstrap CDN Link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Google Font Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CSS Link -->
+    <link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- For Favicon Rendering -->
+    <link rel="shortcut icon" href="{% static 'website/favicon.ico' %}">
+
+
+<style>
+/* Styling for the Navbar that would be applied to ALL the pages inheriting this page  */
+#nav1
+{
+    opacity: 0.9;                          /* Opacity of the Navbar */
+} 
+
+.navbar #color
+{
+    color: red;                         /* Color of the Navbar elements is set from here */   
+}
+
+.navbar 
+{
+    line-height: 1em;                     /* Height of the Navbar */
+}
+
+/* This section deals with the size/style of the Elements inside the navbar */
+#color
+{
+    font-size: large;
+    text-transform: capitalize;
+    bottom:0px;                           /* 'bottom' of the navbar is set to 0px so that pseudo-selector can target it and make changes accordingly when implemented */
+}
+
+#color:hover
+{
+    color:black;
+    position: relative;                   /* Position set to 'relative' so that the Element can be Raised Properly */
+    bottom:2px;
+} 
+
+{% block css %}  {% endblock %}    
+</style>
+
+<!-- Facebook Comment Plugin Script -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <!-- 'id' assigned for targeting Via CSS -->
+    <nav class="navbar navbar-light bg-light navbar-expand-md" id="nav1">
+        <a class="navbar-brand" href="/" id = "color">Srikant</a>
+
+        <!-- Toggler Icon -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#MyNavbar" aria-controls="#MyNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- 'justify-content-end' keeps the content on the Extreme RHS on the navbar -->
+        <div class="collapse navbar-collapse justify-content-end" id="MyNavbar">
+            
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <!-- 'sr-only' refers to the Content That would be read out ONLY in case of SCREEN READERS -->
+                    <a class="nav-link" href="/" id = "color">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about" id = "color">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog" id = "color">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact" id = "color">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block body %}    {% endblock %}
+   
+<!-- CDN of JS Files COMPULSORY For the Working of 'Toggle Button' Of Bootstrap on Minimizing of the Window -->
+<!-- 4th JS Link is For the FontAwesome Kit -->
+<!-- The Last 3 JS Links are for Enabling JS Animations -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/417824116f.js" crossorigin="anonymous"></script>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/CSSRulePlugin.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js"></script>
+
+{% block js %}
+{% endblock %}
+
+</body>
+</html>

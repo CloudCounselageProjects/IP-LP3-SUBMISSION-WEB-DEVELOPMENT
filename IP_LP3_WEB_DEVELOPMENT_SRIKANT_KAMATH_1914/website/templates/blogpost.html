@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %} My Blog Posts {% endblock %}
+{% load static %}
+
+{% block css %}
+
+/* Styling w.r.t Text Majorly on the RHS of the Blog-post */
+.clr
+{
+  color:black;
+}
+
+/* Styling for the Background Image via 'section' id */
+#blogpost
+{
+    background:url('/static/website/blogpost_bg.jpg') center no-repeat;                                   
+    background-size: cover;                                     
+}
+
+/* Initially the Container has Opacity set to 0 and NO Pointer Events..but later these Properties get Updated Via JS */
+.ctr
+{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* Horizontal Scrollbar HIDDEN so that it does not Interfere with the Animation */
+body 
+{
+  overflow-x:hidden;  
+}
+
+{% endblock %}
+
+{% block body %}
+<section id="blogpost">                       <!-- Section assigned in order to Encapsulate the WHOLE Blog Contents -->
+<div class="container py-4 ctr">              <!-- 'padding-top' attribute used here with value 4 as 'py-4' -->
+  <div class="row">
+    <div class="col-md-8">              <!-- For acquiring 8 column spacing w.r.t 12 offered columns -->
+      <h3 class="pb-4 mb-2 font-italic border-bottom">
+        {{blog.title}}
+      </h3>
+
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{blog.head0}}</h2>
+        <p class="blog-post-meta">{{blog.pub_date}}</p>
+
+        <!-- Passing data via the Django Templating Syntax -->
+        <!-- 'linebreaks' added for Appropriate Spacing of the Data to be reflected just like it Was there in the DB -->
+        <p class="mt-3">{{blog.chead0|linebreaks}}</p>
+        <hr>
+
+        <h2>{{blog.head1}}</h2>
+        <p>{{blog.chead1|linebreaks}}</p>          
+        
+        <hr>
+        <h2>{{blog.head2}}</h2>
+        <p>{{blog.chead2|linebreaks}}</p>
+
+        <!-- Facebook Comments Link -->
+        <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogpost/{{blog.post_id|add:'22'}}" data-numposts="5"></div>
+
+      </div> <!-- End of main Blog-Post -->
+
+    </div>
+
+    <!-- Code For the RHS Blocks of the Blog-Post -->
+    <aside class="col-md-4">
+      <div class="p-4 mb-3 bg-warning rounded">
+        <h4 class="font-italic clr">Check Out my Other Blogs!!</h4>
+        <p class="mb-0 clr">Index</p>
+        
+        <!-- Logic For Maintaining Index Of Pages -->
+        {% if blog.post_id > 1 and blog.post_id < 3 %}          <!-- RHS Value to be changed as the No of Blogs Change -->
+        <a class="clr" href="http://127.0.0.1:8000/blog/blogpost/{{blog.post_id|add:'-1'}}"><strong>Prev</strong></a>         
+        <a class="mx-2 clr" href="http://127.0.0.1:8000/blog/blogpost/{{blog.post_id|add:'1'}}"><strong>Next</strong></a>   
+        {% elif blog.post_id == 1 %}
+        <a class="clr" href="http://127.0.0.1:8000/blog/blogpost/{{blog.post_id|add:'1'}}"><strong>Next</strong></a>
+        {% else %}
+        <a class="clr" href="http://127.0.0.1:8000/blog/blogpost/{{blog.post_id|add:'-1'}}"><strong>Prev</strong></a>          
+        {% endif %}
+      </div>
+
+      <!-- Assigning Padding of value '2' using 'p-2' to our Unstyled List of Links -->
+      <div class="p-2">
+        <h4 class="font-italic">Links</h4>
+        <ol class="list-unstyled">
+          <li><a class="clr" href="https://github.com/srikant946" target="blank"><strong>Github</strong></a></li>
+          <li><a class="clr" href="https://twitter.com/SrikantKamath" target="blank"><strong>Twitter</strong></a></li>
+          <li><a class="clr" href="https://www.linkedin.com/in/srikant-kamath-8a3892199/" target="blank"><strong>Linkedin</strong></a></li>
+        </ol>
+      </div>
+    </aside>
+
+  </div> <!-- 'Row' ends here -->
+</div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/effect.js' %}"></script>
+{% endblock %}
