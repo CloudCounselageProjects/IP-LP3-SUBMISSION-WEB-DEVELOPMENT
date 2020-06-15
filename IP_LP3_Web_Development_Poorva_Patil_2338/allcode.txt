@@ -1,0 +1,936 @@
+connection.php
+<?php
+$servername="localhost";
+$username="root";
+$password="";
+$conn=mysqli_connect($servername,$username,$password,);
+?>
+farmer login.php
+<?php
+session_start();
+error_reporting(0);
+if($_SESSION['current_farmer']!=''&&$_SESSION['current_farmername']!=''&&$_SESSION['currentfarmermobile']!='')
+{
+header('location:farmer_dashboard.php');
+}
+
+?>
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="farmer_login1.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+	<div class="container login-container">
+            <div class="row">
+                <div class="col-md-6 login-form-1">
+                    <h3>LOGIN</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Email *" name="username" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" name="userpass" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" name="submit" value="Login" />
+                        </div>
+                        <div class="form-group">
+                            <a href="farmer_registeration.php" class="ForgetPwd">Don't Have Account?</a>
+                        </div>
+						<div class="form-group">
+                            <a href="mainhome.php" class="ForgetPwd">Main Home Page...</a>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+	</body>
+	<?php
+if(isset($_GET['submit'])){
+	include'connection.php';
+$database=mysqli_select_db($conn,'foodtag');
+$username=$_GET['username'];
+$pass=$_GET['userpass'];
+if($username!=''&&$pass!='')
+{
+		$query="SELECT * FROM farmerlogin WHERE (username='$username' AND password='$pass')";
+		$data=mysqli_query($conn,$query);
+		$rows=mysqli_num_rows($data);
+		if($rows>='1')
+		{
+			$res=mysqli_fetch_array($data);
+			 $_SESSION['current_farmer']=$username;
+			 $_SESSION['current_farmername']=$res['name'];
+			$_SESSION['currentfarmermobile']=$res['phoneno'];
+			header('location:farmer_dashboard.php');
+		}
+		else{
+			echo"<script>";
+			echo"alert('User Not Exist')";
+			echo"</script>";
+		}
+}
+else{
+	echo"<script>";
+	echo"alert('All Fields Are Necessary')";
+	echo"</script>";
+}
+}
+?>
+</html>
+
+farmer_find_dealer.php
+
+<?php
+include'connection.php';
+session_start();
+error_reporting(0);
+mysqli_select_db($conn,'foodtag');
+$user=$_SESSION['current_farmername'];
+$query="SELECT * FROM FARMER where name='$user' and association!=''";
+$result=mysqli_query($conn,$query);
+$rowcount=mysqli_num_rows($result);
+if($rowcount>0)
+{
+	echo"<script>";
+	echo"alert('Some Data Exist')";
+	echo"</script>";
+}
+else
+{
+	echo"<script>";
+	echo"alert('Data is Not Exist')";
+	echo"</script>";
+}
+?>
+<html>
+	<head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="farmer_dashboard.css" type="text/css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	<div class="row">
+        <div class="col-md-12">
+        <h4>PURCHASED DATA FROM RETAILER</h4>
+        <div class="table-responsive">
+              <table id="mytable" class="table table-bordred table-striped">
+                   <thead>
+                  <th>ID</th>
+                   <th>PRODUCT NAME</th>
+                    <th>PRODUCT QUANTITY</th>
+                     <th>PRODUCT COST</th>
+                     <th>LOCATION</th>
+                   <th>RETAILER NAME</th>
+                    <th>PHONE NO</th>        
+                       <th>DELETE</th>
+					   <th>UPDATE</th>
+                   </thead>
+    <tbody>
+<?php
+for($i=0;$i<$rowcount;$i++)
+{
+	$res=mysqli_fetch_array($result);
+	?>
+	 <tr>
+    <td><?php echo $res["id"]?></td>
+	<td><?php echo $res["product"]?></td>
+    <td><?php echo $res["quantity"]?></td>
+    <td><?php echo $res["price"]?></td>
+    <td><?php echo $res["address"]?></td>
+	<td><?php echo $res["association"]?></td>
+	<?php
+		$idd=$res["retailer_id"];?>
+	<td><?php $data="SELECT * FROM retailerlogin WHERE id='$idd'";
+						$d=mysqli_query($conn,$data);
+						$r=mysqli_fetch_array($d);
+					$rows=mysqli_num_rows($d);
+					if($rows>=1)
+						echo $r['phoneno'];
+					else
+						echo"No Phone";
+							?></td>
+	<?php
+    echo "<td><p data-placement='top' data-toggle='tooltip' title='Delete'><a href='delete_product.php?id=$res[id]&quantity=$res[quantity]&product=$res[product]&price=$res[price]&adr=$res[address]'><button class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' ><span class='glyphicon glyphicon-trash'></span></button></a></p></td>";
+	echo "<td><p data-placement='top' data-toggle='tooltip' title='Edit'><a href='update_product_data.php?id=$res[id]&quantity=$res[quantity]&product=$res[product]&price=$res[price]&adr=$res[address]''><button class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' ><span class='glyphicon glyphicon-pencil'></span></button></a></p></td>";
+    ?></tr>	
+	<?php
+}
+ ?>
+    </tbody>
+</table>
+	</body>
+</html>
+
+retailerproductremove.php
+
+<?php
+session_start();
+include 'connection.php';
+error_reporting(0);
+mysqli_select_db($conn,'foodtag');
+				$product=$_GET['product_name'];
+				$quantity=$_GET['product_quantity'];
+				$price=$_GET['product_price'];
+				$addr=$_GET['product_loc'];
+				$id1=$_GET['product_id'];
+				$req_id=$_GET['id'];
+					$query="UPDATE FARMER SET association='',retailer_id='0' WHERE id='$req_id'";
+					if(mysqli_query($conn,$query))
+					{	 
+						echo"<script>";
+						echo"alert('Removed Successfully')";
+						echo"</script>";
+						header("location:retailers_purchased_products.php");
+					}	
+			?> 
+	</body>
+</html>  
+
+deleteproduct.php
+
+<?php
+session_start();
+include 'connection.php';
+error_reporting(0);
+mysqli_select_db($conn,'foodtag');
+	include"connection.php";
+				mysqli_select_db($conn,'foodtag');
+				error_reporting(0);
+?>
+<html>
+	<head>
+		<title>FARMER PRODUCT DELETION</title>
+		<link href="reg.css" type="text/css" rel="stylesheet">
+			<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+	<div class="container" id="wrap">
+	  <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="GET" accept-charset="utf-8" class="form" role="form">   <legend>FARMER PRODUCT DELETION</legend>
+                    <input type="text" name="product_id" value="<?php echo $_GET['id'];?>" class="form-control input-lg" placeholder="Product Id"  />
+                    <input type="text" name="product_name" value="<?php echo $_GET['product'];?>" class="form-control input-lg" placeholder="Product Name"  />
+                    <input type="number" name="product_quantity" value="<?php echo $_GET['quantity'];?>" class="form-control input-lg" placeholder="product quantity in KG's"  />
+                    <input type="number" name="product_price" value="<?php echo $_GET['price'];?>" class="form-control input-lg" placeholder="Expected Price"  />
+                    <input type="text" name="product_loc" value="<?php echo $_GET['adr'];?>" class="form-control input-lg" placeholder="Location Of Pickup"  />
+						
+                    <br />
+              
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" onclick="return comfirm('Are you sure want to delete');" type="submit" name="subbtn">
+                        DELETE DATA </button>
+            </form>          
+          </div>
+</div>            
+</div>
+</div>
+		<?php
+		if(isset($_GET['subbtn']))
+		{	
+				$id1=$_GET['product_id'];
+				$query="SELECT * FROM FARMER where id='$id1'";
+				$result=mysqli_query($conn,$query);
+				$aa=mysqli_fetch_array($result);
+				if($aa['association']==''&&$aa['retailer_id']==0){
+					if($id1!='')
+					{
+						$query="DELETE FROM FARMER WHERE id='$id1'";
+						echo $query;
+						if(mysqli_query($conn,$query))
+						{
+							echo"<script>";
+							echo"alert('Deleted Successfully')";
+							echo"</script>";
+							header("location:farmer_dashboard.php");
+						}
+						else
+							echo"Not Done!!!!";
+					}
+					else{
+						echo"<script>";
+						echo"alert('Deletion is Not Done Is Not Done!!!')";
+						echo"</script>";		
+					}
+				}
+				else{
+					echo"<script>";
+					echo"alert('you Can Not Delete Information As Product Is Purchased!!!')";
+					echo"</script>";
+				}
+		}
+			?> 
+	</body>
+</html>      
+
+farmer_product_register.php
+
+<?php
+session_start();
+$currentuser=$_SESSION['current_farmer'];
+?>
+<html>
+	<head>
+		<title>FARMER PRODUCT REGISTERATION</title>
+		<link href="reg.css" type="text/css" rel="stylesheet">
+			<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+	<div class="container" id="wrap">
+	  <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="GET" accept-charset="utf-8" class="form" role="form">   <legend>FARMER PRODUCT REGISTERATION</legend>
+                    <input type="text" name="product_name" value="" class="form-control input-lg" placeholder="Product Name"  />
+                    <input type="number" name="product_quantity" value="" class="form-control input-lg" placeholder="product quantity in KG's"  />
+                    <input type="number" name="product_price" value="" class="form-control input-lg" placeholder="Expected Price"  />
+                    <input type="text" name="product_loc" value="" class="form-control input-lg" placeholder="Location Of Pickup"  />
+                    <br />
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit" name="subbtn">
+                        Submit Data </button>
+            </form>        
+          </div>
+</div>            
+</div>
+</div>
+		<?php
+		if(isset($_GET['subbtn']))
+		{
+				include"connection.php";
+				mysqli_select_db($conn,'foodtag');
+				error_reporting(0);
+$currentuser=$_SESSION['current_farmername'];
+				$name=$currentuser;
+				$product=$_GET['product_name'];
+				$phone=$_SESSION['currentfarmermobile'];
+				$quantity=$_GET['product_quantity'];
+				$price=$_GET['product_price'];
+				$addr=$_GET['product_loc'];
+				if($price>0){
+					if($name!=''&&$product!=''&&$phone!=''&&$quantity!=''&&$price!=''&&$addr!='')
+					{
+						$query="INSERT INTO FARMER VALUES('','$name','$phone','$addr','$product','$quantity','$price','','')";
+						$data=mysqli_query($conn,$query);
+									if($data)
+									{
+										echo"<script>";
+										echo"alert('Product Added Successfully')";
+										echo"</script>";
+										header("location:farmer_dashboard.php");
+									}
+									else
+										echo"Not Done!!!!";
+							}
+							else{
+								echo"<script>";
+								echo"alert('All Record Is Needed')";
+								echo"</script>";
+							}
+				}
+				else{
+					echo"<script>";
+								echo"alert('Price Should Not Zero')";
+								echo"</script>";
+				}
+		}
+			?> 
+	</body>
+</html>                                                 
+
+update.php
+
+<?php
+session_start();
+include 'connection.php';
+error_reporting(0);
+mysqli_select_db($conn,'foodtag');?>
+<html>
+	<head>
+		<title> PRODUCT ADD TO CART </title>
+		<link href="reg.css" type="text/css" rel="stylesheet">
+			<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+	<div class="container" id="wrap">
+	  <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="GET" accept-charset="utf-8" class="form" role="form">   <legend>ADD TO CART</legend>
+					<input type="text" name="product_id" value="<?php echo $_GET['id'];?>" class="form-control input-lg" placeholder="Product Id"  />
+                    <input type="text" name="product_name" value="<?php echo $_GET['product'];?>" class="form-control input-lg" placeholder="Product Name"  />
+                    <input type="number" name="product_quantity" value="<?php echo $_GET['quantity'];?>" class="form-control input-lg" placeholder="product quantity in KG's"  />
+                    <input type="number" name="product_price" value="<?php echo $_GET['price'];?>" class="form-control input-lg" placeholder="Expected Price"  />
+                    <input type="text" name="product_loc" value="<?php echo $_GET['adr'];?>" class="form-control input-lg" placeholder="Location Of Pickup"  />	
+                    <br />
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit" name="subbtn">
+                        Add To Cart </button>
+            </form>          
+          </div>
+</div>            
+</div>
+</div>
+		<?php
+		if(isset($_GET['subbtn']))
+		{
+				$product=$_GET['product_name'];
+				$quantity=$_GET['product_quantity'];
+				$price=$_GET['product_price'];
+				$addr=$_GET['product_loc'];
+				$id1=$_GET['product_id'];
+				$ret_name=$_SESSION['current_retailer'];
+				$ret_id=$_SESSION['current_retailerid'];
+				echo $ret_name;
+				echo $ret_id;
+				echo $id1;
+				if($product!=''&&$quantity!=''&&$price!=''&&$addr!='')
+				{
+					$query="UPDATE FARMER SET association='$ret_name',retailer_id='$ret_id' WHERE id='$id1'";
+					echo $query;
+					if(mysqli_query($conn,$query))
+					{ 
+						echo"<script>";
+						echo"alert('Updated Successfully')";
+						echo"</script>";
+						header("location:retailer_data_access.php";
+					}
+					else
+						echo"Not Done!!!!";
+				}
+				else{
+					echo"<script>";
+					echo"alert('Updation Is Not Done!!!')";
+					echo"</script>";
+				}
+		}
+			?> 
+	</body>
+</html>         
+
+farmer_logout.php
+<?php
+      session_start();
+error_reporting(0);
+      unset($_SESSION['current_farmer']);
+			 unset($_SESSION['current_farmername']);
+			unset($_SESSION['currentfarmermobile']);
+session_destroy(); 
+header('location:farmer_login.php')
+?>          
+
+retailer_data_access.php
+
+<?php
+include'connection.php';
+session_start();
+error_reporting(0);
+mysqli_select_db($conn,'foodtag');
+$user=$_SESSION['current_retailername'];
+$query="SELECT * FROM FARMER where association=''";
+$result=mysqli_query($conn,$query);
+$rowcount=mysqli_num_rows($result);
+?>
+<html>
+	<head>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="farmer_dashboard.css" type="text/css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+	</head>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<body class="home">
+    <div class="container-fluid display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                <div class="logo">
+                    <a hef="home.html"><img src="omk.jpg" alt="merkery_logo" class="hidden-xs hidden-sm">
+                        <img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                    </a>
+                </div>
+                <div class="navi">
+                    <ul>
+                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="retailers_purchased_products.php"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Purchased Product</span></a></li>
+                        <li><a href="retailer_logout.php"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Logout</span></a></li>
+                        
+						</ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                <div class="row">
+                    <header>
+                        <div class="col-md-7">
+                            <div class="search hidden-xs hidden-sm">
+                                <input type="text" placeholder="Search By Id of Product" name="search1" id="search">
+								<button class="btn btn-lg btn-primary btn-block signup-btn" type="submit" name="subbtn">
+                        Search </button>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="header-rightside">
+                                <ul class="list-inline header-top pull-right">
+                                    <li class="hidden-xs"><a href="update_retialer_profile.php" class="add-project" data-toggle="modal" data-target="#add_project">Update Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                    <li>
+                                        <a href="#" class="icon-info">
+                                            <i class="fa fa-bell" aria-hidden="true"></i>
+                                            <span class="label label-primary">3</span>
+                                        </a>
+                                    </li>
+                                            <b class="caret"></b></a>   
+                                                    <span><?php
+								$uu=$_SESSION['current_retailer'];
+									echo $uu;
+									?></span>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+						<h1 align="center">RETAILER DASHBOARD</h1>
+                </div>
+                <div class="user-dashboard">
+                    <h1>Hello <?php
+								$uu=$_SESSION['current_retailername'];
+									echo $uu;
+									?></h1>
+					<div class="container">
+	<div class="row">
+        <div class="col-md-12">
+        <h4>FARMER PRODUCTS</h4>
+        <div class="table-responsive">
+              <table id="mytable" class="table table-bordred table-striped">
+                   <thead>1
+                  <th>ID</th>
+                   <th>PRODUCT NAME</th>
+                    <th>PRODUCT QUANTITY</th>
+                     <th>PRODUCT COST</th>
+                     <th>LOCATION</th>           
+                       <th>ADD TO CART</th>
+					   </thead>
+    <tbody>
+<?php
+for($i=0;$i<$rowcount;$i++)
+{
+	$res=mysqli_fetch_array($result);
+	?>
+	 <tr>
+    <td><?php echo $res["id"]?></td>
+	<td><?php echo $res["product"]?></td>
+    <td><?php echo $res["quantity"]?></td>
+    <td><?php echo $res["price"]?></td>
+    <td><?php echo $res["address"]?></td>
+	<?php
+    echo "<td><p data-placement='top' data-toggle='tooltip' title='Add To Cart'><a href='update.php?id=$res[id]&quantity=$res[quantity]&product=$res[product]&price=$res[price]&adr=$res[address]'><button class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' ><span class='glyphicon glyphicon-download-alt'></span></button></a></p></td>";
+	?></tr>	
+	<?php
+}
+ ?>
+    </tbody>
+</table>      
+        </div>
+	</div>
+</div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="add_project" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Add Project</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+	</body>
+</html
+
+update_product_data.php
+
+<?php
+session_start();
+include 'connection.php';
+error_reporting(0);
+mysqli_select_db($conn,'foodtag');
+	include"connection.php";
+				mysqli_select_db($conn,'foodtag');
+				error_reporting(0);
+?>
+<html>
+	<head>
+		<title> PRODUCT UPDATION</title>
+		<link href="reg.css" type="text/css" rel="stylesheet">
+			<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+	<div class="container" id="wrap">
+	  <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="GET" accept-charset="utf-8" class="form" role="form">   <legend>FARMER PRODUCT UPDATION</legend>                    
+                    <input type="text" name="product_id" value="<?php echo $_GET['id'];?>" class="form-control input-lg" placeholder="Product Id"  />
+                    <input type="text" name="product_name" value="<?php echo $_GET['product'];?>" class="form-control input-lg" placeholder="Product Name"  />
+                    <input type="number" name="product_quantity" value="<?php echo $_GET['quantity'];?>" class="form-control input-lg" placeholder="product quantity in KG's"  />
+                    <input type="number" name="product_price" value="<?php echo $_GET['price'];?>" class="form-control input-lg" placeholder="Expected Price"  />
+                    <input type="text" name="product_loc" value="<?php echo $_GET['adr'];?>" class="form-control input-lg" placeholder="Location Of Pickup"  />
+                    <br />
+					<?php
+					$rrrr=$_GET['id'];
+					?>     
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit" name="subbtn">
+                        Update Data </button>
+            </form>          
+          </div>
+</div>            
+</div>
+</div>
+		<?php
+		if(isset($_GET['subbtn']))
+		{
+				$product=$_GET['product_name'];
+				$quantity=$_GET['product_quantity'];
+				$price=$_GET['product_price'];
+				$addr=$_GET['product_loc'];
+				$id1=$_GET['product_id'];
+				$query="SELECT * FROM FARMER where id='$id1'";
+			$result=mysqli_query($conn,$query);
+			$aa=mysqli_fetch_array($result);
+			if($aa['association']==''&&$aa['retailer_id']==0){
+				if($product!=''&&$quantity!=''&&$price!=''&&$addr!='')
+				{
+					$query="UPDATE FARMER SET product='$product',price='$price',quantity='$quantity',address='$addr' WHERE id='$id1'";
+					echo $query;
+					if(mysqli_query($conn,$query))
+					{
+						echo"<script>";
+						echo"alert('Updated Successfully')";
+						echo"</script>";
+						header("location:farmer_dashboard.php");
+					}
+					else
+						echo"Not Done!!!!";
+				}
+				else{
+					echo"<script>";
+					echo"alert('Updation Is Not Done!!!')";
+					echo"</script>";			
+				}
+			}
+			else{
+				echo"<script>";
+					echo"alert('you Can Not Update Information As Product Is Purchased!!!')";
+					echo"</script>";
+			}
+		}
+			?> 
+	</body>
+</html>     
+
+     registeration.php
+	 
+<html>
+	<head>
+		<title>Registeration</title>
+		<link href="reg.css" type="text/css" rel="stylesheet">
+			<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+	<div class="container" id="wrap">
+	  <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="GET" accept-charset="utf-8" class="form" role="form">   <legend>Retailer Registeration</legend>
+                    <h4>It's free and always will be.</h4>
+                            <input type="text" name="name1" value="" class="form-control input-lg" placeholder="Name"  />                  
+                    <input type="text" name="username" value="" class="form-control input-lg" placeholder="User Name"  />
+					<input type="password" name="password" value="" class="form-control input-lg" placeholder="Password"  />
+					<input type="number" name="phoneno" value="" class="form-control input-lg" placeholder="Phone No"  />
+                    <input type="text" name="address" value="" class="form-control input-lg" placeholder="Address"  />
+                    <input type="email" name="email" value="" class="form-control input-lg" placeholder="Email Id"  />
+                    <br />
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit" name="subbtn">
+                        Create Account </button>
+            </form>          
+          </div>
+</div>            
+</div>
+</div>
+		<?php
+		if(isset($_GET['subbtn']))
+		{
+				include"connection.php";
+				mysqli_select_db($conn,'foodtag');
+				error_reporting(0);
+				$name=$_GET['name1'];
+				$email=$_GET['email'];
+				$phone=$_GET['phoneno'];
+				$username=$_GET['username'];
+				$userpass=$_GET['password'];
+				$addr=$_GET['address'];
+				$da=mysqli_query($conn,"SELECT * FROM retailerlogin WHERE (username='$username' AND password='$userpass')");
+				$rows=mysqli_num_rows($da);
+				if($rows==0){
+					if($name!=''&&$email!=''&&$phone!=''&&$username!=''&&$userpass!=''&&$addr!='')
+					{
+						if(strlen($phone)==10)
+						{
+							$query="INSERT INTO RETAILERLOGIN VALUES('$name','$email','$phone','$addr','$username','$userpass','')";
+							$data=mysqli_query($conn,$query);
+							if($data)
+							{
+									echo'<script>';
+									echo"alert('Registeration Succesfully Done!!!!')";
+									echo'</script>';
+									header('location:login.php');
+							}
+							else
+								echo"Not Done!!!!";
+						}
+						else{
+							echo"<script>";
+						echo"alert('Phone no Must Be Of 10 Digits')";
+						echo"</script>";
+						}
+					}
+					else{
+						echo"<script>";
+						echo"alert('All Field Are Necessary')";
+						echo"</script>";
+					}
+				}
+				else{
+					echo"<script>";
+					echo"alert('Username And Password Are Existing So Pls take Another One')";
+					echo"</script>";
+				}
+		}
+			?> 
+	</body>
+</html>  
+             
+farmer_registeration.php
+<?php
+include'connection.php';
+session_start();
+?>
+<html>
+	<head>
+		<title>Registeration</title>
+		<link href="reg.css" type="text/css" rel="stylesheet">
+			<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+	<div class="container" id="wrap">
+	  <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="GET" accept-charset="utf-8" class="form" role="form">   <legend align="center">Farmer Registeration</legend>
+                    <input type="text" name="name1" value="" class="form-control input-lg" placeholder="Name"  />                  
+                    <input type="text" name="username1" value="" class="form-control input-lg" placeholder="User Name"  />
+					<input type="password" name="password1" value="" class="form-control input-lg" placeholder="Password"  />
+					<input type="number" name="phoneno1" value="" class="form-control input-lg" placeholder="Phone No"  />
+                    <input type="text" name="address1" value="" class="form-control input-lg" placeholder="Address"  />
+                    <br />
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit" name="subbtn">
+                        Create Account </button>
+            </form>          
+          </div>
+</div>            
+</div>
+</div><?php
+		if(isset($_GET['subbtn']))
+		{
+				include"connection.php";
+				mysqli_select_db($conn,'foodtag');
+				error_reporting(0);
+				$name=$_GET['name1'];
+				$phone=$_GET['phoneno1'];
+				$username=$_GET['username1'];
+				$userpass=$_GET['password1'];
+				$addr=$_GET['address1'];
+				$da=mysqli_query($conn,"SELECT * FROM farmerlogin WHERE (username='$username' AND password='$userpass')");
+				$rows=mysqli_num_rows($da);
+				if($rows==0){
+					if($name!=''&&$phone!=''&&$username!=''&&$userpass!=''&&$addr!='')
+					{
+						if(strlen($phone)==10){
+							$query="INSERT INTO  farmerlogin VALUES('','$name','$username','$userpass','$addr','$phone')";
+							$data=mysqli_query($conn,$query);
+							if($data)
+							{
+								 $_SESSION['current_farmer']=$username;
+								 $_SESSION['current_farmer_mobile']=$phone;
+									echo'<script>';
+									echo"alert('Registeration Succesfully Done!!!!')";
+									echo'</script>';
+									header('location:farmer_login.php');	
+							}
+							else
+								echo"Not Done!!!!";
+						}
+						else{
+							echo"<script>";
+						echo"alert('Phone No Must Be Of 10 Digits')";
+						echo"</script>";
+						}
+					}
+					else{
+						echo"<script>";
+						echo"alert('All Field Are Necessary')";
+						echo"</script>";
+					}
+				}
+				else{
+					echo"<script>";
+					echo"alert('Username And Password Are Existing So Pls take Another One')";
+					echo"</script>";
+				}
+		}
+			?> 
+	</body>
+</html>       
+
+farmerdash.php
+
+<?php
+include'connection.php';
+session_start();
+error_reporting(0);
+mysqli_select_db($conn,'foodtag');
+$user=$_SESSION['current_farmername'];
+$query="SELECT * FROM FARMER where name='$user'";
+$result=mysqli_query($conn,$query);
+$rowcount=mysqli_num_rows($result);
+?>
+<html>
+	<head>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="farmer_dashboard.css" type="text/css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+	</head>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<body class="home">
+    <div class="container-fluid display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                <div class="logo">
+                    <a hef="home.html"><img src="omk.jpg" alt="merkery_logo" class="hidden-xs hidden-sm">
+                        <img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                    </a>
+                </div>
+                <div class="navi">
+                    <ul>
+                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="farmers_purchased_products.php"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Purchased Product</span></a></li>
+                        <li><a href="farmer_find_dealer.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Dealers Who Purchased</span></a></li>
+                        <li><a href="farmer_logout.php"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Log Out</span></a></li>
+						</ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                <div class="row">
+                    <header>
+                        <div class="col-md-7">
+                            <div class="search hidden-xs hidden-sm">
+                                <input type="text" placeholder="Search By Id of Product" name="search1" id="search">
+								<button class="btn btn-lg btn-primary btn-block signup-btn" type="submit" name="subbtn">
+                        Search </button>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="header-rightside">
+                                <ul class="list-inline header-top pull-right">
+                                    <li class="hidden-xs"><a href="farmer_product_register.php" class="add-project" data-toggle="modal" data-target="#add_project">Add Product</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                    <li>
+                                        <a href="#" class="icon-info">
+                                            <i class="fa fa-bell" aria-hidden="true"></i>
+                                            <span class="label label-primary">3</span>
+                                        </a>
+                                    </li>
+                                            <b class="caret"></b></a>
+                                             <span><?php
+								$uu=$_SESSION['current_farmer'];
+									echo $uu;
+									?></span>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+						<h1 align="center">FARMER DASHBOARD</h1>
+                </div>
+                <div class="user-dashboard">
+                    <h1>Hello <?php
+								$uu=$_SESSION['current_farmer'];
+									echo $uu;
+									?></h1>
+					<div class="container">
+	<div class="row">
+        <div class="col-md-12">
+        <h4>ADDED DATA</h4>
+        <div class="table-responsive">
+              <table id="mytable" class="table table-bordred table-striped">
+                   <thead>
+                  <th>ID</th>
+                   <th>PRODUCT NAME</th>
+                    <th>PRODUCT QUANTITY</th>
+                     <th>PRODUCT COST</th>
+                     <th>LOCATION</th>           
+                       <th>DELETE</th>
+					   <th>UPDATE</th>
+                   </thead>
+    <tbody>
+<?php
+for($i=0;$i<$rowcount;$i++)
+{
+	$res=mysqli_fetch_array($result);
+	?>
+	 <tr>
+    <td><?php echo $res["id"]?></td>
+	<td><?php echo $res["product"]?></td>
+    <td><?php echo $res["quantity"]?></td>
+    <td><?php echo $res["price"]?></td>
+    <td><?php echo $res["address"]?></td>
+	<?php
+    echo "<td><p data-placement='top' data-toggle='tooltip' title='Delete'><a href='delete_product.php?id=$res[id]&quantity=$res[quantity]&product=$res[product]&price=$res[price]&adr=$res[address]'><button class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' ><span class='glyphicon glyphicon-trash'></span></button></a></p></td>";
+	echo "<td><p data-placement='top' data-toggle='tooltip' title='Edit'><a href='update_product_data.php?id=$res[id]&quantity=$res[quantity]&product=$res[product]&price=$res[price]&adr=$res[address]''><button class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' ><span class='glyphicon glyphicon-pencil'></span></button></a></p></td>";
+    ?></tr>	
+	<?php
+}
+ ?>
+    </tbody>
+</table>      
+        </div>
+	</div>
+</div> 
+                </div>
+            </div>
+        </div>
+    </div>
+	</body>
+</html>            
+								 

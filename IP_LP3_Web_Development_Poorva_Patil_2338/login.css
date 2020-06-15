@@ -1,0 +1,21 @@
+.body{
+    background: gray;
+}
+
+.heading{
+    color:white;
+    background: black;
+    text-align:center;
+
+}
+
+.form{
+    height:1000px;
+    width:800px;
+    background: black;
+    margin-left:500px;
+    padding:50px;
+}
+.head{
+    color: white;
+}

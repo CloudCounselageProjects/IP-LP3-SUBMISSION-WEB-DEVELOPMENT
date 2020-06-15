@@ -1,0 +1,32 @@
+body{
+	
+	padding:100;
+}
+form{
+	
+padding:50px;
+border-style:solid;
+width:300;
+background-color:red;
+text-align:center;
+}
+.txt1{
+	font-family:sans-serif;
+	border-style:solid;
+	border-radius:50%;
+	color:yellow;
+	
+}
+.txtuser{
+	border-radius:30%;
+}
+.txtupass{
+	border-radius:30%;
+}
+.bttn{
+	border-radius:30%;
+}
+.a{
+	border-style:solid;
+	background-color:orange;
+}
