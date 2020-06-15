@@ -4,8 +4,8 @@ DateTime API is a Full Stack Single Page Web Application build using __Angular_N
 # Common setup
 Clone the repo and install the dependencies.
 ```
-git clone https://github.com/contentful/the-example-app.nodejs.git
-cd the-example-app.nodejs
+https://github.com/PareshRP/IP-LP3-SUBMISSION-WEB-DEVELOPMENT.git
+cd IP-LP3-SUBMISSION-WEB-DEVELOPMENT
 ```
 ## In the project directory, you can run:
 
