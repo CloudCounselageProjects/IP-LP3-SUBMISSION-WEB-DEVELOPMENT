@@ -27,7 +27,7 @@
     <script>
 
     //API call for the date and time
-    fetch('http://api.timezonedb.com/v2.1/get-time-zone?key=RR0FDMN5ZRBP&format=json&by=position&lat=20.5937&lng=78.9629')
+    fetch('http://api.timezonedb.com/v2.1/get-time-zone?key=?&format=json&by=position&lat=20.5937&lng=78.9629')
     .then(res => res.json())
     .then(data => {
          console.log(data.formatted);   
