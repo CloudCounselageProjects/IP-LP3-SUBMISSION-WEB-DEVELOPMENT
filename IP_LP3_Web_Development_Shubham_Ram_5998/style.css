@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    height: 75px;
+    background-color: #333;
+    display: flex; justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.header .name{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 250px;
+}
+.header .name img{width:53px}
+.header .name h1{
+    color: #fff;
+    font-size: 2rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.header button{
+    width: 6rem;
+    height: 3rem;
+    cursor: pointer;
+    font-size: 1.25rem;
+    border-radius: 7px;
+    color: white;
+    background-color: #000;
+    border-style: solid;
+    border-width: 3px;
+    border-image: linear-gradient(115deg,#4fcf70,#fad648,#a767e5,#12bcfe,#44ce7b) 1;
+}
+
+.header button:hover, .header button:active{
+    font-size: 1.35rem;
+    border-image: linear-gradient(15deg,#44ce7b, #12bcfe, #a767e5, #fad648, #4fcf70) 1;
+}
+
+.editor{
+    width: 100%;
+    display: flex;
+    height: calc(100vh - 80px);
+}
+.editor .code{
+    width: 500px;
+    border-right: 1px solid rgb(0, 0, 0);
+}
+.editor .code > div{
+    width: 100%;
+    height: 33.33%;
+    border-bottom: 1px solid #fff;
+    background-color: #1C1C1C;
+}
+.editor .preview{
+    width: calc(100% - 500px);
+    height: 100%;
+} 
+
+.editor .preview iframe{
+    width: 100%;
+    height: 100%; border: none; outline: none;
+}
+.CodeMirror{
+    height: 100%;
+}
+.CodeMirror-simplescroll-vertical div{
+    height: 0 !important;
+}
