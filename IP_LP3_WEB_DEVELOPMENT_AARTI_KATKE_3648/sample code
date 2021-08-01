@@ -1,0 +1,18 @@
+<!-- HTML CODE -->
+<h1> Web Code Editor with Syntax Hightlighting</h1>
+<button onclick="func()">CLICK HERE</button>
+
+/* CSS CODE */
+body{
+  	padding : 0px 40px;
+  	background-color: pink;
+}
+h1{
+  font-Family: "Raleway:, sans-serif;
+  font-size: 50px;
+}
+
+/* JAVA SCRIPT  CODE */
+function func(){
+  document.querySelector("h1").innerText = "Updated Text";
+}
