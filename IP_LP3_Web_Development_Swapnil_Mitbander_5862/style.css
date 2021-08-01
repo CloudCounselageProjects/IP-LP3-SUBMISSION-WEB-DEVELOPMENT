@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.editor-menu{
+    background-color: rgb(224, 222, 222);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.313rem 0 0.313rem 0.625rem;
+}
+
+.btn{
+    padding: 0.438rem 0.125rem;
+    margin: 0.3rem;
+    min-width: 3.5rem;
+    transition: all .3s;
+}
+
+.btn:hover{
+    background-color: greenyellow;
+}
+
+.live{
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 0.13rem solid orangered;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.live>* {
+cursor: pointer;
+}
+
+.container{
+    position: absolute;
+    bottom: 0;
+    top: 4rem;
+    width: 100%;
+    display: flex;
+
+}
+.left, .right{
+    height: 100%;
+    width: 50%;
+    border: 0.0625rem solid grey;
+}
+.bar{
+width: 0.25rem;
+height: 100%;
+background-color: #eee;
+cursor: w-resize;
+}
+
+.right{
+    flex: 1;
+}
+
+.editor{
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    outline: none;
+    padding: 1rem 0 0 1rem;
+    border-color: #ccc;
+
+}
+
+.iframe{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    overflow-y: auto;
+    white-space: pre;
+    right: 0;
+    padding: 0.25rem;
+}
+
+@media(max-width:998px){
+    html{
+        font-size:55%;
+    }
+}
+
+@media(max-width:768px){
+    html{
+        font-size:45%;
+    }
+}
+
+@media(max-width:600px){
+    html{
+        font-size: 35%;
+    }
+}
