@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <title>Online Code Editor</title>
+    </head>
+    <body>
+        <div class="Editor-code">
+            <nav class="navbar">
+            <div class="IDEname">
+                Online Code Editor
+            </div>
+           
+            
+            <div class="run" id="run"><button onclick="showPreview()">Run >></button></div>
+            <div class="refresh" id="refresh"><button id="refresh">Refresh</button></div>
+
+            <div class="navlang">
+                <ul>
+                    <li id="html" class="toggle1"><a href="#" >HTML</a></li>
+                    <li id="css" class="toggle1"><a href="#" >CSS</a></li>
+                    <li id="js" class="toggle1"><a href="#" >JS</a></li>
+                    
+                  
+                </ul>
+            </div>
+
+            
+            <a href="#" class="toggle-bar">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+            
+        
+            </nav>
+
+            <div class="codecontainer">
+                <!--<label for="HTMLcontainer">HTML</label><br>-->
+               
+                <textarea id="HTMLcontainer" class="container" name="HTMLcontainer"  rows="5" cols="40" placeholder="Write your HTML code here..."></textarea>
+                
+                <!--<label for="CSScontainer">CSS</label><br>-->
+                
+                <textarea id="CSScontainer" class="container" name="CSScontainer"  rows="5" cols="40" placeholder="Do the CSS styling here..."></textarea>
+                
+                <!--<label for="JScontainer">JS</label><br>-->
+                
+                <textarea id="JScontainer"class="container" name="JScontainer"  rows="5" cols="40" placeholder="Write your JS code here..."></textarea>
+                
+                
+            </div>
+            <div class="preview-area">
+                <div class="header">OUTPUT</div>
+                <iframe id="preview-window"></iframe>
+              </div>
+
+        </div>
+
+    
+
+<script>
+const togglebutton=document.getElementsByClassName('toggle-bar')[0]
+const navbarlinks=document.getElementsByClassName('navlang')[0]
+
+togglebutton.addEventListener('click',() => {
+navbarlinks.classList.toggle('active');
+})
+$("#HTMLcontainer").height(510);
+$("#CSScontainer").height(510);
+$("#JScontainer").height(510);
+$("#preview-window").height(510);
+    
+$("#html").click(function(){
+    $("#HTMLcontainer").height(510);
+    $("#HTMLcontainer").width(620);
+    $("#CSScontainer").hide();
+    $("#JScontainer").hide();
+    $("#preview-window").width(620);
+});
+$("#css").click(function(){
+    $("#CSScontainer").height(510);
+    $("#CSScontainer").width(620);
+    $("#HTMLcontainer").hide();
+    $("#JScontainer").hide();
+    $("#preview-window").width(620);
+    
+});
+$("#js").click(function(){
+    $("#JScontainer").height(510);
+    $("#JScontainer").width(620);
+    $("#HTMLcontainer").hide();
+    $("#CSScontainer").hide();
+    $("#preview-window").width(620);
+});
+  
+
+function showPreview(){
+  var html= document.getElementById("HTMLcontainer").value;
+  var css="<style>"+document.getElementById("CSScontainer").value+"</style>";
+  var js= ""+document.getElementById("JScontainer").value+"";
+  runcode(html,css,js);
+}
+function runcode(html,css,js){
+var frame = document.getElementById("preview-window").contentWindow.document;
+  frame.open();
+  frame.write(html+css+js);
+  frame.close();
+  }
+  
+$("#refresh").click(function(){
+    $("#HTMLcontainer").show();
+    $("#HTMLcontainer").width(300);
+    $("#CSScontainer").show();
+    $("#CSScontainer").width(300);
+    $("#JScontainer").show();
+    $("#JScontainer").width(300);
+    $("#preview-window").show();
+    $("#preview-window").width(330);
+  });
+
+</script>
+
+    
+
+</body>
+</html>
