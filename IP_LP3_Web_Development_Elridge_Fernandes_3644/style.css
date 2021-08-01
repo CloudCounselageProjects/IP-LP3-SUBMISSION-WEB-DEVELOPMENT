@@ -1,0 +1,38 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+}
+.code-area {
+  display: flex;
+  flex-direction:column;
+  width: 40%;
+  border-right:2px solid black;
+}
+.code-area textarea {
+  resize: none;
+  outline: none;
+  width: 100%;
+  height: 33.33%;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #555;
+  border: 2px solid black;
+  color: white;
+}
+.preview-area {
+  width: 60%;
+}
+.preview-area iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+::placeholder{
+  color: aqua;
+}
