@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online HTML CSS JS Code Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div><h1>Online HTML, CSS, JS Code Editor</h1></div><br>
+    <div class="code-area">
+        <textarea id="html_code" placeholder="HTML Code:"></textarea>
+        <textarea id="css_code" placeholder="CSS Code:" ></textarea>
+        <textarea id="js_code" placeholder="JavaScript Code:"></textarea>
+    </div>
+    
+    <h2>Output:</h2>
+    <div class="preview-area">
+    
+        <iframe id="preview-window"></iframe>
+        <button onclick="clearCode()" class="button">Clear Source Code</button>
+    	<button onclick="preview()" class="button1">Preview</button>
+    	<button onclick="cleariframe()" class="button2">Clear Output </button>
+    </div>
+    <div class="mynameinfo"><h5>Made by Prajwal Thote</h5></div>
+    
+</body>
+<script src="index.js"></script>
+
+</html> 
